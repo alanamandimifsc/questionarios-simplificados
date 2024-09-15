@@ -29,7 +29,7 @@ const respostasControllers = new RespostasControllers()
 // respostasRouter.use(garantirAutenticacaoRBAC('criador'))
 
 // respostasRouter.get('/', respostasControllers.index)
-respostasRouter.use(garantirAutenticacaoRBAC('estudante'))
+// respostasRouter.use(garantirAutenticacaoRBAC('estudante'))
 respostasRouter.post('/:perguntaId', respostasControllers.create
     /*
     #swagger.tags = ['Respostas']

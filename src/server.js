@@ -10,6 +10,7 @@ const usuarioRouter = require('./dominios/usuarios')
 const questionariosRouter = require('./dominios/questionarios')
 const sessionsRouter = require('./dominios/sessions')
 const respostasRouter = require('./dominios/respostas')
+const { garantirAutenticacao, garantirAutenticacaoRBAC } = require('./middlewares/garantirAutenticacao')
 
 
 const app = express()
@@ -19,9 +20,9 @@ app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 /** DEFINIÇÃO DE ROTAS */
 app.use('/usuarios', usuarioRouter)
-app.use('/questionarios', questionariosRouter)
+app.use('/questionarios', garantirAutenticacao, garantirAutenticacaoRBAC('criador'), questionariosRouter)
 app.use('/sessions', sessionsRouter)
-app.use('/respostas', respostasRouter)
+app.use('/respostas', garantirAutenticacao, garantirAutenticacaoRBAC('estudante'), respostasRouter)
 
 async function iniciarServidor() {
 
