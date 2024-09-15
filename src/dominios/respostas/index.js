@@ -22,14 +22,14 @@ const respostasControllers = new RespostasControllers()
 // const schemaDeleteQuestionario = yup.object({
 //     params: yup.object({
 //         id: yup.string().uuid("Id informado não é valido!").required("Id é obrigatório")
-        
+
 //     }),
 // })
 
 // respostasRouter.use(garantirAutenticacaoRBAC('criador'))
 
 // respostasRouter.get('/', respostasControllers.index)
-respostasRouter.use(garantirAutenticacao)
+respostasRouter.use(garantirAutenticacaoRBAC('estudante'))
 respostasRouter.post('/:perguntaId', respostasControllers.create)
 
 // respostasRouter
