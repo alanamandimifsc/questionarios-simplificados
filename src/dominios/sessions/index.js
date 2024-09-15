@@ -14,6 +14,27 @@ const schemaPostSession = yup.object({
     }),
 })
 
-sessionsRouter.post('/', validarSchema(schemaPostSession), sessionsControllers.create)
+sessionsRouter.post('/', validarSchema(schemaPostSession), sessionsControllers.create
+    /*
+            #swagger.tags = ['Session']
+            #swagger.description = 'Realizar login'
+            #swagger.parameters.['FazerLogin'] = {
+                    in: 'body',
+                    description: 'Dados do Usuário',
+                    required: 'true',
+                    schema: {
+                        $email: "email@email.com",
+                        $senha: "senha",
+                    }
+                }
+            #swagger.responses[200] = {
+                    description: 'Login feito com sucesso.'
+                }
+            }
+            #swagger.responses[400] = {
+                description: 'Dados Invalidos.'
+            }
+        */
+)
 
 module.exports = sessionsRouter

@@ -3,6 +3,8 @@ require('dotenv').config()
 const database = require('./database/config')
 const express = require('express')
 
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_output.json')
 
 const usuarioRouter = require('./dominios/usuarios')
 const questionariosRouter = require('./dominios/questionarios')
@@ -13,6 +15,7 @@ const respostasRouter = require('./dominios/respostas')
 const app = express()
 /** Config */
 app.use(express.json()) // middleware => interceptador
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 /** DEFINIÇÃO DE ROTAS */
 app.use('/usuarios', usuarioRouter)

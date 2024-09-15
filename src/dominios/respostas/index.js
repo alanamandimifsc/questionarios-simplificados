@@ -30,7 +30,32 @@ const respostasControllers = new RespostasControllers()
 
 // respostasRouter.get('/', respostasControllers.index)
 respostasRouter.use(garantirAutenticacaoRBAC('estudante'))
-respostasRouter.post('/:perguntaId', respostasControllers.create)
+respostasRouter.post('/:perguntaId', respostasControllers.create
+    /*
+    #swagger.tags = ['Respostas']
+    #swagger.description = 'Cadastrar respostas'
+    #swagger.parameters.['perguntaId'] = {
+            in: 'path',
+            name: 'perguntaId',
+            description: 'id da pergunta que vai ser respondida',
+            type: 'string'
+    }
+    #swagger.parameters.['CriarResposta'] = {
+        in: 'body',
+        description: 'Dados da resposta',
+        required: 'true',
+            schema: {
+                $conteudo: "Conteudo da resposta"
+            }
+    }
+    #swagger.responses[201] = {
+            description: 'Pergunta cadastrada com sucesso.'
+    }
+    #swagger.responses[400] = {
+        description: 'Dados inválidos'
+    }
+*/
+)
 
 // respostasRouter
 // .delete(
