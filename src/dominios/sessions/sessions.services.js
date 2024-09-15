@@ -11,17 +11,17 @@ class SessionServices {
                 email,
             }
         })
-        
-        if(!usuario) {
+
+        if (!usuario) {
             //throw new Error("Erro no servidor")
             return null
         }
 
         const senhaCriptografada = await compare(senha, usuario.senha)
 
-        if(!senhaCriptografada) return null 
-        
-        const token = sign({ permissao: 'criador' }, jwtSecret, {
+        if (!senhaCriptografada) return null
+
+        const token = sign({ permissao: usuario.permissao }, jwtSecret, {
             subject: usuario.id,
             expiresIn: '1d'
         })
