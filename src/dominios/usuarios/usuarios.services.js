@@ -10,14 +10,14 @@ class UsuariosServices {
         return usuarios
     }
 
-    async createUser({ email, nome, sobrenome, senha }) {
+    async createUser({ email, nome, sobrenome, senha, permissao }) {
         const usuarioExiste = await usuarioModel.findOne({
             where: {
                 email,
             }
         })
 
-        if(usuarioExiste) {
+        if (usuarioExiste) {
             //throw new Error("Erro no servidor")
             return null
         }
@@ -25,21 +25,22 @@ class UsuariosServices {
         const senhaCriptografada = await hash(senha, 8)
 
         const usuario = await usuarioModel.create({
-            email, 
-            nome, 
-            sobrenome, 
-            senha: senhaCriptografada
+            email,
+            nome,
+            sobrenome,
+            senha: senhaCriptografada,
+            permissao
         })
 
         return usuario
     }
-    
-    update() {}
+
+    update() { }
 
     async delete(id) {
         const usuarioExiste = await usuarioModel.findByPk(id)
 
-        if(!usuarioExiste) {
+        if (!usuarioExiste) {
             return false
         }
 

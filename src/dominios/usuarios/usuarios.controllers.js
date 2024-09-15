@@ -11,7 +11,7 @@ class UsuariosControllers {
      */
     async index(request, response) {
         const listaUsuarios = await usuarioService.list()
-        
+
         return response.json(listaUsuarios)
     }
     /**
@@ -25,7 +25,7 @@ class UsuariosControllers {
 
         const usuario = await usuarioService.createUser(body)
 
-        if(!usuario) return response.status(400).json({ message: "Usuário já possui cadastro"}) 
+        if (!usuario) return response.status(400).json({ message: "Usuário já possui cadastro" })
 
         return response.status(201).json(usuario)
     }
@@ -37,11 +37,11 @@ class UsuariosControllers {
      */
     async delete(request, response) {
         const { id } = request.params
-        
+
         const apagou = await usuarioService.delete(id)
-        
-        if(!apagou) {
-            return response.status(400).json({ message: "Não foi possivel apagar"})
+
+        if (!apagou) {
+            return response.status(400).json({ message: "Não foi possivel apagar" })
         }
 
         return response.status(204).end()
