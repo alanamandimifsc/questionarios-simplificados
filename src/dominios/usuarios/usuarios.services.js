@@ -4,7 +4,7 @@ const { hash } = require('bcrypt')
 class UsuariosServices {
     async list() {
         const usuarios = await usuarioModel.findAll({
-            attributes: ['id', 'nome', 'sobrenome', 'email', 'createdAt', 'updatedAt']
+            attributes: ['id', 'nome', 'sobrenome', 'email', 'permissao', 'createdAt', 'updatedAt']
         })
 
         return usuarios
